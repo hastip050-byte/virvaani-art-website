@@ -1,0 +1,1 @@
+import {NextResponse} from 'next/server';import {prisma,ensureSeeded,parseJsonArray} from '@/lib/db';export const dynamic='force-dynamic';export async function GET(){await ensureSeeded();const rows=await prisma.service.findMany({orderBy:{number:'asc'}});return NextResponse.json(rows.map(x=>({...x,tags:parseJsonArray(x.tags),deliverables:parseJsonArray(x.deliverables)})))}

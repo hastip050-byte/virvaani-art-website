@@ -1,0 +1,1 @@
+import {NextResponse} from 'next/server';import {prisma,ensureSeeded} from '@/lib/db';export async function GET(){await ensureSeeded();const [projects,gallery,services,enquiries]=await Promise.all([prisma.project.count(),prisma.galleryItem.count(),prisma.service.count(),prisma.enquiry.count({where:{status:'NEW'}})]);return NextResponse.json({projects,gallery,services,enquiries})}

@@ -1,0 +1,127 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id        String   @id
+  title     String
+  sector    String
+  location  String
+  image     String
+  summary   String
+  year      String
+  detail    String
+  scope     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Service {
+  id           String   @id
+  title        String
+  short        String
+  image        String
+  tags         String
+  number       String
+  detail       String
+  deliverables String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model GalleryItem {
+  id        String   @id
+  name      String
+  image     String
+  desc      String
+  detail    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model BeforeAfter {
+  id        String   @id
+  title     String
+  before    String
+  after     String
+  detail    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Testimonial {
+  id        String   @id
+  name      String
+  role      String
+  quote     String
+  image     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model BlogPost {
+  id             String   @id
+  title          String
+  slug           String   @unique
+  excerpt        String
+  content        String
+  image          String
+  seoTitle       String
+  seoDescription String
+  published      Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model SiteSetting {
+  id             String   @id
+  siteName       String
+  tagline        String
+  description    String
+  email          String
+  phone          String
+  address        String
+  seoTitle       String
+  seoDescription String
+  logo           String
+  updatedAt      DateTime @updatedAt
+}
+
+model Enquiry {
+  id          String   @id
+  name        String
+  email       String
+  phone       String?
+  company     String?
+  projectType String?
+  city        String?
+  message     String
+  status      String   @default("NEW")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Product {
+  id          String   @id
+  title       String
+  name        String
+  category    String
+  description String
+  detail      String
+  image       String
+  price       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+model AdminUser {
+  id        String   @id
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

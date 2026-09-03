@@ -1,0 +1,1 @@
+export default function SectionTitle({eyebrow,title,desc}:{eyebrow:string,title:string,desc?:string}){return <div className="section-title"><span className="eyebrow">{eyebrow}</span><h2>{title}</h2>{desc&&<p>{desc}</p>}</div>}
