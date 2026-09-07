@@ -2,15 +2,16 @@
   "name": "virvaani-art-website",
   "version": "1.0.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "db:generate": "prisma generate",
-    "db:migrate": "prisma migrate dev --name init",
-    "db:setup": "prisma generate && prisma db push"
-  },
+ "scripts": {
+  "dev": "next dev",
+  "build": "prisma generate && next build",
+  "start": "next start",
+  "lint": "next lint",
+  "db:generate": "prisma generate",
+  "db:migrate": "prisma migrate dev --name init",
+  "db:setup": "prisma generate && prisma db push"
+},
+
   "dependencies": {
     "next": "14.2.35",
     "react": "18.3.1",
