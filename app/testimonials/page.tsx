@@ -54,7 +54,7 @@ export default function Testimonials() {
         eyebrow="Client Voice"
         title="WHAT PEOPLE SAY."
         desc="Testimonials published by the VIRVAANI ART team from completed work and collaborations."
-        image="/images/creative-room.jpg"
+        image="/client-images/testimonial.jpg"
       />
 
       <main>

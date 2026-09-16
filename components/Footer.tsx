@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 type SiteSettings = {
   siteName?: string;
@@ -18,7 +19,10 @@ export default function Footer() {
   useEffect(() => {
     fetch('/api/admin/settings')
       .then((res) => {
-        if (!res.ok) throw new Error('Failed to load settings');
+        if (!res.ok) {
+          throw new Error('Failed to load settings');
+        }
+
         return res.json();
       })
       .then((data) => {
@@ -36,15 +40,16 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footer-grid">
 
+        {/* BRAND */}
         <div className="footer-brand">
-          <img
-            src={logo}
-            alt={siteName}
-          />
+          <Link href="/" aria-label="VIRVAANI ART Home">
+            <img
+              src={logo}
+              alt={siteName}
+            />
+          </Link>
 
-          <h3>
-            {siteName}
-          </h3>
+          <h3>{siteName}</h3>
 
           <p>
             {s.description ||
@@ -52,17 +57,36 @@ export default function Footer() {
           </p>
         </div>
 
+        {/* EXPLORE */}
         <div>
           <b>Explore</b>
-          <a href="/about">About</a>
-          <a href="/services">Services</a>
-          <a href="/projects">Projects</a>
-          <a href="/before-after">Before / After</a>
-          <a href="/products">Products</a>
-          <a href="/gallery">Gallery</a>
-          <a href="/blog">Blog</a>
+
+          <Link href="/about">
+            About
+          </Link>
+
+          <Link href="/services">
+            Services
+          </Link>
+
+          <Link href="/projects">
+            Projects
+          </Link>
+
+          <Link href="/before-after">
+            Before / After
+          </Link>
+
+          <Link href="/gallery">
+            Gallery
+          </Link>
+
+          <Link href="/blog">
+            Blog
+          </Link>
         </div>
 
+        {/* CONTACT */}
         <div>
           <b>Contact</b>
 
@@ -72,23 +96,49 @@ export default function Footer() {
           </span>
         </div>
 
+        {/* REACH US */}
         <div>
           <b>Reach Us</b>
 
-          <a href={`mailto:${s.email || 'info@virvaaniart.com'}`}>
+          <a
+            href={`mailto:${s.email || 'info@virvaaniart.com'}`}
+          >
             {s.email || 'info@virvaaniart.com'}
           </a>
 
-          <a href={`tel:${s.phone || '+917797791717'}`}>
+          <a
+            href={`tel:${s.phone || '+917797791717'}`}
+          >
             {s.phone || '+91 77977 91717'}
           </a>
 
-          <a href="/contact">Send an enquiry ↗</a>
-          <a href="/credits">Image credits ↗</a>
+          <Link href="/contact">
+            Send an enquiry ↗
+          </Link>
+
+          {/* CAREER */}
+          <Link href="/career">
+            Join Our Creative Network ↗
+          </Link>
+
+          {/* ADMIN */}
+          <div className="footer-admin">
+            <span className="footer-admin-title">
+              Admin
+            </span>
+
+            <Link
+              href="/admin/login"
+              className="admin-login-link"
+            >
+              🔐 Admin Login
+            </Link>
+          </div>
         </div>
 
       </div>
 
+      {/* BOTTOM */}
       <div className="container footer-bottom">
         <span>
           © {new Date().getFullYear()} {siteName}. All rights reserved.

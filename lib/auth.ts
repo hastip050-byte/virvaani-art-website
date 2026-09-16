@@ -18,7 +18,7 @@ export function isValidToken(token?: string) {
   const [value, signature] = token.split('.');
   if (!value || !signature) return false;
   const expected = sign(value);
-  return crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected));
+  return crypto.timingSafeEqual(new Uint8Array(Buffer.from(signature)), new Uint8Array(Buffer.from(expected)));
 }
 export function isAdmin() {
   return isValidToken(cookies().get(COOKIE)?.value);

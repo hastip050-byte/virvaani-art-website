@@ -1,16 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import ThemeToggle from './ThemeToggle';
 
 const links = [
   ['Home', '/'],
   ['About', '/about'],
   ['Services', '/services'],
-  ['Projects', '/projects'],
-  ['Before / After', '/before-after'],
-  ['Products', '/products'],
-  ['Gallery', '/gallery'],
   ['Testimonials', '/testimonials'],
   ['Blog', '/blog'],
   ['Contact', '/contact'],
@@ -25,6 +22,7 @@ type SiteSettings = {
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [galleryOpen, setGalleryOpen] = useState(false);
   const [settings, setSettings] = useState<SiteSettings | null>(null);
 
   useEffect(() => {
@@ -37,51 +35,126 @@ export default function Header() {
   const logo = settings?.logo || '/logo/virvaani-art-logo.png';
   const siteName = settings?.siteName || 'VIRVAANI ART';
 
+  const closeMenus = () => {
+    setOpen(false);
+    setGalleryOpen(false);
+  };
+
   return (
     <header className="site-header">
       <div className="nav-wrap">
 
-        <a href="/" className="logo-link">
+        {/* LOGO */}
+        <Link
+          href="/"
+          className="logo-link"
+          onClick={closeMenus}
+        >
           <img
             src={logo}
             alt={siteName}
+            className="header-logo"
           />
 
           <span>
             VIRVAANI <b>ART</b>
           </span>
-        </a>
+        </Link>
 
+        {/* NAVIGATION */}
         <nav className={open ? 'nav open' : 'nav'}>
-          {links.map(([n, p]) => (
-            <a
+
+          {/* HOME / ABOUT / SERVICES */}
+          {links.slice(0, 3).map(([n, p]) => (
+            <Link
               key={n}
               href={p}
-              onClick={() => setOpen(false)}
+              onClick={closeMenus}
             >
               {n}
-            </a>
+            </Link>
           ))}
 
-          <a
+          {/* GALLERY DROPDOWN */}
+          <div className="gallery-nav">
+
+            <button
+              type="button"
+              className="gallery-nav-button"
+              onClick={() =>
+                setGalleryOpen((prev) => !prev)
+              }
+              aria-expanded={galleryOpen}
+              aria-haspopup="menu"
+            >
+              Gallery
+            </button>
+
+            {galleryOpen && (
+              <div className="gallery-dropdown">
+
+                <Link
+                  href="/gallery"
+                  onClick={closeMenus}
+                >
+                  Gallery
+                </Link>
+
+                <Link
+                  href="/projects"
+                  onClick={closeMenus}
+                >
+                  Projects
+                </Link>
+
+                <Link
+                  href="/gallery?tab=before-after"
+                  onClick={closeMenus}
+                >
+                  Before / After
+                </Link>
+
+              </div>
+            )}
+
+          </div>
+
+          {/* TESTIMONIALS / BLOG / CONTACT */}
+          {links.slice(3).map(([n, p]) => (
+            <Link
+              key={n}
+              href={p}
+              onClick={closeMenus}
+            >
+              {n}
+            </Link>
+          ))}
+
+          {/* CTA */}
+          <Link
             className="nav-cta"
             href="/contact"
-            onClick={() => setOpen(false)}
+            onClick={closeMenus}
           >
             Start a Project ↗
-          </a>
+          </Link>
+
         </nav>
 
+        {/* RIGHT TOOLS */}
         <div className="nav-tools">
+
           <ThemeToggle />
 
           <button
             className="menu-btn"
-            onClick={() => setOpen(!open)}
+            onClick={() => setOpen((prev) => !prev)}
             aria-label="Toggle menu"
+            aria-expanded={open}
           >
             {open ? '×' : '☰'}
           </button>
+
         </div>
 
       </div>

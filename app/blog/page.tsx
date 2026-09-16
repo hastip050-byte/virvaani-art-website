@@ -44,7 +44,7 @@ export default function Blog() {
         eyebrow="Insights"
         title="VIRVAANI ART JOURNAL."
         desc="Ideas, project stories and practical guidance for educational, public and commercial art programmes."
-        image="/images/library-story.jpg"
+        image="/client-images/blog-kosamba.jpg"
       />
 
       <main>

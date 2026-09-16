@@ -1,9 +1,12 @@
 import type { MetadataRoute } from 'next';
+import { prisma } from '@/lib/db';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'http://localhost:3000';
 
-  return [
+  const productCount = await prisma.product.count();
+
+  const urls: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: new Date(),
@@ -27,12 +30,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/products`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
     },
     {
       url: `${baseUrl}/gallery`,
@@ -59,4 +56,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
   ];
+
+  if (productCount > 0) {
+    urls.push({
+      url: `${baseUrl}/products`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    });
+  }
+
+  return urls;
 }

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma, ensureSeeded, parseJsonArray } from '@/lib/db';
-const map:any={projects:'project',services:'service',gallery:'galleryItem',beforeafter:'beforeAfter',testimonials:'testimonial',blog:'blogPost'};
+const map:any={projects:'project',services:'service',gallery:'galleryItem',beforeafter:'beforeAfter',testimonials:'testimonial',blog:'blogPost',suggestions:'suggestion'};
 const model=(r:string)=>(prisma as any)[map[r]];
 function clean(r:string,row:any){if(r==='projects')return {...row,scope:parseJsonArray(row.scope)};if(r==='services')return {...row,tags:parseJsonArray(row.tags),deliverables:parseJsonArray(row.deliverables)};return row;}
 

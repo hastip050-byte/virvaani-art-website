@@ -49,7 +49,7 @@ export async function generateMetadata() {
         siteName: 'VIRVAANI ART',
         images: [
           {
-            url: '/images/selected-modern-01.jpg',
+            url: '/client-images/DSC_0534.JPG',
             width: 1200,
             height: 630,
             alt: 'VIRVAANI ART',
@@ -61,7 +61,7 @@ export async function generateMetadata() {
         card: 'summary_large_image',
         title,
         description,
-        images: ['/images/selected-modern-01.jpg'],
+        images: ['/client-images/DSC_0534.JPG'],
       },
 
       robots: {

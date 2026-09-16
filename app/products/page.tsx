@@ -43,7 +43,7 @@ export default function Products() {
         eyebrow="Products & Creative Systems"
         title="READY-TO-ADAPT VISUAL SYSTEMS."
         desc="VIRVAANI ART can package recurring art requirements into clear theme sets, mural concepts and visual systems for faster rollouts."
-        image="/images/geometric-atrium.jpg"
+        image="/client-images/DSC_0581.JPG"
       />
 
       <main>

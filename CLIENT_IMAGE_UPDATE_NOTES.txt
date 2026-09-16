@@ -1,0 +1,8 @@
+VIRVAANI ART - Client Image Update
+
+- Services: 9 unique client images with image-specific titles/details.
+- Gallery: 10 curated unique client images; duplicate seeded gallery items are hidden from public gallery.
+- Products: 6 unique client images, separate from Services and Gallery; prices remain hidden.
+- Home: Projects section removed. Home no longer loads or displays projects.
+- Projects remain in Admin Dashboard for admin-created/managed project records.
+- Existing logo and overall UI are preserved.

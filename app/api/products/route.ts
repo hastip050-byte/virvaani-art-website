@@ -1,16 +1,25 @@
 import { NextResponse } from 'next/server';
-import { prisma, ensureSeeded } from '@/lib/db';
+import { prisma } from '@/lib/db';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  await ensureSeeded();
+  try {
+    const products = await prisma.product.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
 
-  const products = await prisma.product.findMany({
-    orderBy: {
-      createdAt: 'desc',
-    },
-  });
+    return NextResponse.json(products);
+  } catch (error) {
+    console.error('PUBLIC PRODUCTS ERROR:', error);
 
-  return NextResponse.json(products);
+    return NextResponse.json(
+      {
+        error: 'Unable to load products',
+      },
+      { status: 500 }
+    );
+  }
 }

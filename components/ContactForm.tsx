@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import SuggestionForm from '@/components/SuggestionForm';
 
 export default function ContactForm() {
   const [sent, setSent] = useState(false);
@@ -112,7 +113,8 @@ export default function ContactForm() {
         />
       </div>
 
-      <button
+      <div className="contact-actions">
+        <button
         className="btn dark"
         type="submit"
         disabled={loading}
@@ -122,7 +124,10 @@ export default function ContactForm() {
           : sent
           ? 'Enquiry Captured ✓'
           : 'Send Enquiry ↗'}
-      </button>
+        </button>
+
+        <SuggestionForm />
+      </div>
 
       {sent && (
         <small className="success">

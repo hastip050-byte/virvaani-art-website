@@ -67,7 +67,7 @@ export default function Projects() {
         eyebrow="Project Showcase"
         title="FROM CONCEPT TO FINISHED WALL."
         desc="A growing portfolio across schools, Anganwadi centres, public infrastructure and private-sector spaces."
-        image="/images/selected-modern-01.jpg"
+        image="/client-images/DSC_0534.JPG"
       />
 
       <main>

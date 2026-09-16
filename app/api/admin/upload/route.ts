@@ -13,6 +13,6 @@ export async function POST(req:Request){
   const name=`${Date.now()}-${crypto.randomBytes(5).toString('hex')}.${ext}`;
   const dir=path.join(process.cwd(),'public','uploads');
   await fs.mkdir(dir,{recursive:true});
-  await fs.writeFile(path.join(dir,name),Buffer.from(await file.arrayBuffer()));
+  await fs.writeFile(path.join(dir,name),new Uint8Array(await file.arrayBuffer()));
   return NextResponse.json({url:`/uploads/${name}`});
 }

@@ -1,24 +1,29 @@
 import { NextResponse } from 'next/server';
-import { prisma, ensureSeeded } from '@/lib/db';
+import { prisma } from '@/lib/db';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  await ensureSeeded();
+  try {
+    const products = await prisma.product.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
 
-  const products = await prisma.product.findMany({
-    orderBy: {
-      createdAt: 'desc',
-    },
-  });
+    return NextResponse.json(products);
+  } catch (error) {
+    console.error('PRODUCT GET ERROR:', error);
 
-  return NextResponse.json(products);
+    return NextResponse.json(
+      { error: 'Unable to load products' },
+      { status: 500 }
+    );
+  }
 }
 
 export async function POST(req: Request) {
   try {
-    await ensureSeeded();
-
     const body = await req.json();
 
     if (!body.id || !body.title) {
@@ -47,8 +52,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json(
       {
-        error:
-          error.message || 'Unable to create product',
+        error: error.message || 'Unable to create product',
       },
       { status: 500 }
     );

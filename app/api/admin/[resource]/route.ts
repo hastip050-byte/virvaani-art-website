@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { prisma, ensureSeeded, parseJsonArray } from '@/lib/db';
 
-const map:any = { projects:'project', services:'service', gallery:'galleryItem', beforeafter:'beforeAfter', testimonials:'testimonial', blog:'blogPost', settings:'siteSetting' };
+const map:any = { projects:'project', services:'service', gallery:'galleryItem', beforeafter:'beforeAfter', testimonials:'testimonial', blog:'blogPost', settings:'siteSetting', suggestions:'suggestion' };
 const model:any = (key:string)=> (prisma as any)[map[key]];
 
 function clean(resource:string, row:any) {
@@ -20,7 +20,7 @@ export async function GET(_:Request,{params}:{params:{resource:string}}) {
 export async function POST(req:Request,{params}:{params:{resource:string}}) {
   await ensureSeeded();
   const r=params.resource.toLowerCase();
-  if (!map[r] || r==='settings') return NextResponse.json({error:'Invalid resource'},{status:400});
+  if (!map[r] || r==='settings' || r==='suggestions') return NextResponse.json({error:'Invalid resource'},{status:400});
   const body=await req.json();
   const id=String(body.id || `${r}-${Date.now()}`);
   const data:any={...body,id};

@@ -12,7 +12,7 @@ const products = [
       'Curated visual themes for classrooms, corridors and public learning spaces.',
     detail:
       'A reusable collection of visual directions that can be adapted across multiple walls and locations.',
-    image: '/images/science-lab.jpg',
+    image: '/client-images/DSC_0625.JPG',
     price: null,
   },
   {
@@ -24,7 +24,7 @@ const products = [
       'Ready-to-customise concept directions that can be adapted to wall size and audience.',
     detail:
       'Concept packages help teams choose a visual direction before full-scale execution begins.',
-    image: '/images/school-compound.jpg',
+    image: '/client-images/DSC_0524.JPG',
     price: null,
   },
   {
@@ -36,7 +36,7 @@ const products = [
       'Colour-coded visual systems that help people navigate large campuses and public spaces.',
     detail:
       'Art and wayfinding can work together to make large environments easier to understand and more memorable.',
-    image: '/images/geometric-atrium.jpg',
+    image: '/client-images/DSC_0608.JPG',
     price: null,
   },
   {
@@ -48,7 +48,7 @@ const products = [
       'Custom visual installations for offices, retail and private-sector environments.',
     detail:
       'Brand-led wall art designed around identity, interior architecture, audience and customer experience.',
-    image: '/images/selected-modern-02.jpg',
+    image: '/client-images/DSC_0528.JPG',
     price: null,
   },
   {
@@ -60,7 +60,7 @@ const products = [
       'Friendly visual systems for Anganwadi and community spaces.',
     detail:
       'Simple, colourful and positive visual themes designed for early-learning environments and community use.',
-    image: '/images/selected-modern-03.jpg',
+    image: '/client-images/DSC_0649.JPG',
     price: null,
   },
   {
@@ -72,7 +72,7 @@ const products = [
       'Large-scale directions for bridges, facades and civic infrastructure.',
     detail:
       'High-visibility artwork concepts developed for large public-facing structures and circulation spaces.',
-    image: '/images/selected-modern-01.jpg',
+    image: '/client-images/DSC_0534.JPG',
     price: null,
   },
 ];
